@@ -6,12 +6,13 @@
         <title>Formulario Sena</title>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./_css/styles.css">
+        
     </head>
     <body>
         <div class="container">
             <h1>📝 Formulario Sena V1</h1>
 
-            <form id="miFormulario">
+            <form id="miformulario">
                 <div class="form-group">
                     <label for="nombre">Nombre completo:</label>
                     <input
@@ -149,156 +150,15 @@
                 </div>
 
                 <!-- Botón de envío -->
-                <button type="submit">🚀 Enviar Formulario</button>
+                <button type="submit" id="submit" value="submit">🚀 Enviar Formulario</button>
             </form>
-
-            <div id="resultado" class="resultado">
-                <h3>✅ ¡Formulario enviado exitosamente!</h3>
-                <p>Estos son los datos que enviaste:</p>
-                <div id="datosEnviados"></div>
+                  <div id="modal-success" class="modal hidden">
+            <div class="modal-content">
+                <h2>¡Datos enviados con exito!</h2>
+                <button id="close-modal">cerrar</button>
             </div>
         </div>
-
-        <!-- ÁREA DONDE SE MOSTRARÁN LOS RESULTADOS -->
-        <div
-            id="resultado"
-            class="resultado">
-            <h3>✅ ¡Formulario enviado exitosamente!</h3>
-            <p>Estos son los datos que enviaste:</p>
-            <div id="datosEnviados"></div>
-        </div>
-
-        <script>
-            // 🎯 SIMULACIÓN DEL ENVÍO DEL FORMULARIO
-
-            // Esperar a que el formulario sea enviado
-            document
-                .getElementById('miFormulario')
-                .addEventListener('submit', function (evento) {
-            // 1. Prevenir que la página se recargue (comportamiento por defecto)
-                evento.preventDefault();
-
-            // 2. Capturar todos los datos del formulario
-                const formulario = evento.target;
-                const datosFormulario = new FormData(formulario);
-
-            // 3. Mostrar los datos en la consola (para estudiantes avanzados)
-                console.log('📊 Datos del formulario:');
-                for (let [campo, valor] of datosFormulario.entries()) {
-                console.log(`${campo}: ${valor}`);
-                }
-
-            // 4. Convertir los datos a un formato legible
-                let datosHTML = '';
-
-            // Recorrer cada campo y crear HTML para mostrar
-                for (let [campo, valor] of datosFormulario.entries()) {
-            // Hacer más legibles los nombres de los campos
-                let nombreCampo = campo;
-                switch (campo) {
-                    case 'nombre':
-                        nombreCampo = 'Nombre completo';
-                        break;
-                    case 'email':
-                        nombreCampo = 'Correo electrónico';
-                        break;
-                    case 'edad':
-                        nombreCampo = 'Edad';
-                        break;
-                    case 'ciudad':
-                        nombreCampo = 'Ciudad';
-                        break;
-                    case 'experiencia':
-                        nombreCampo = 'Experiencia en programación';
-                        break;
-                    case 'color':
-                        nombreCampo = 'Color favorito';
-                        break;
-                    case 'fecha':
-                        nombreCampo = 'Fecha';
-                        break;
-                    case 'fechaHora':
-                        nombreCampo = 'Fecha y hora';
-                        break;
-                    case 'archivo':
-                        nombreCampo = 'Subir archivo';
-                        break;
-                    case 'imagen':
-                        nombreCampo = 'Imagen como botón para resetear';
-                        break;
-                    case 'mes':
-                        nombreCampo = 'Mes';
-                        break;
-                    case 'password':
-                        nombreCampo = 'Contraseña';
-                        break;
-                    case 'rango':
-                        nombreCampo = 'Rango';
-                        break;
-                    case 'busqueda':
-                        nombreCampo = 'Buscar';
-                        break;
-                    case 'telefono':
-                        nombreCampo = 'Telefono';
-                        break;
-                    case 'hora':
-                        nombreCampo = 'Hora';
-                        break;
-                    case 'url':
-                        nombreCampo = 'Sitio Web';
-                        break;
-                    case 'semana':
-                        nombreCampo = 'Semana';
-                        break;
-                    case 'comentarios':
-                        nombreCampo = 'Comentarios adicionales';
-                        break;
-                    case 'acepto':
-                        nombreCampo = 'Términos aceptados';
-                        break;
-                }
-
-            // Si el campo tiene valor, mostrarlo
-                if (valor && valor.trim() !== '') {
-                    datosHTML += `
-                        <div class="dato">
-                            <span class="etiqueta">${nombreCampo}:</span> ${valor}
-                        </div>
-                        `;
-                    }
-          }
-
-            // 5. Mostrar los resultados en la página
-                document.getElementById('datosEnviados').innerHTML = datosHTML;
-                document.getElementById('resultado').style.display = 'block';
-
-            // 6. Scroll suave hacia los resultados
-                document.getElementById('resultado').scrollIntoView({
-                behavior: 'smooth',
-                });
-
-            // 7. Mensaje de confirmación adicional
-                alert(
-                    '¡Formulario enviado correctamente! 🎉\nRevisa los datos más abajo.'
-                    );
-            });
-
-            // 🎯 FUNCIONALIDAD EXTRA: Limpiar formulario
-                function limpiarFormulario() {
-                    document.getElementById('miFormulario').reset();
-                    document.getElementById('resultado').style.display = 'none';
-                }
-
-            // Agregar botón de limpiar después del envío
-                document.addEventListener('DOMContentLoaded', function () {
-                    const contenedor = document.querySelector('.container');
-                    const botonLimpiar = document.createElement('button');
-                    botonLimpiar.innerHTML = '🗑️ Limpiar Formulario';
-                    botonLimpiar.style.backgroundColor = '#f2f2f2';
-                    botonLimpiar.style.marginTop = '10px';
-                    botonLimpiar.onclick = limpiarFormulario;
-                    contenedor.appendChild(botonLimpiar);
-            });
-        </script>
     </body>
+
+    <script type="module" src="./_js/main.js"></script>
 </html>
